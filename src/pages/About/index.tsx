@@ -1,8 +1,7 @@
-import { Card, Avatar, Tag, Divider } from 'antd'
+import { Card, Avatar, Divider } from 'antd'
 import { 
   GithubOutlined, 
   MailOutlined, 
-  WechatOutlined,
   CodeOutlined
 } from '@ant-design/icons'
 import styles from './About.module.scss'

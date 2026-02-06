@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
-import { Card, Tag, Avatar, Button, Divider, Anchor, Spin, message } from 'antd'
+import { Card, Tag, Button, Divider, Anchor, Spin, message } from 'antd'
 import { 
   CalendarOutlined, 
   EyeOutlined, 

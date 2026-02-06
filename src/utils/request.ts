@@ -24,7 +24,8 @@ request.interceptors.response.use(
   (response) => {
     const { code, data, message: msg } = response.data
     if (code === 0) {
-      return { data }
+      response.data = data
+      return response
     }
     message.error(msg || '请求失败')
     return Promise.reject(new Error(msg))

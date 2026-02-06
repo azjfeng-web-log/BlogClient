@@ -7,7 +7,6 @@ import {
   TagsOutlined, 
   ClockCircleOutlined,
   UserOutlined,
-  SearchOutlined,
   LoginOutlined,
   LogoutOutlined,
   EditOutlined

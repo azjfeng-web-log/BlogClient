@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Timeline, Spin, Empty } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
-import { getArchiveList, Article } from '@/api/article'
+import { getArchiveList } from '@/api/article'
 import styles from './Archive.module.scss'
 
 interface ArticleResponse {
