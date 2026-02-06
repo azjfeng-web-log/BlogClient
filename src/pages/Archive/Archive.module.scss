@@ -1,0 +1,43 @@
+@import '@/styles/variables.scss';
+
+.archive {
+  .card {
+    border-radius: $border-radius;
+  }
+}
+
+.monthHeader {
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-color;
+}
+
+.count {
+  font-size: 13px;
+  font-weight: normal;
+  color: $text-color-light;
+  margin-left: 8px;
+}
+
+.articleItem {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  padding: 4px 0;
+
+  &:hover .title {
+    color: $primary-color;
+  }
+}
+
+.day {
+  color: $text-color-light;
+  font-size: 13px;
+  min-width: 30px;
+}
+
+.title {
+  color: $text-color-secondary;
+  transition: color 0.3s;
+}

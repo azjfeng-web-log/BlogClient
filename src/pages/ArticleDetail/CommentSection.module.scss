@@ -1,0 +1,72 @@
+@import '@/styles/variables.scss';
+
+.commentSection {
+  margin-top: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+.inputArea {
+  margin-bottom: 24px;
+}
+
+.replyTip {
+  margin-bottom: 8px;
+  color: $text-color-secondary;
+  font-size: 13px;
+}
+
+.submitBtn {
+  margin-top: 12px;
+}
+
+.commentList {
+  margin-top: 24px;
+}
+
+.commentItem {
+  display: flex;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid $border-color;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.childComment {
+  margin-left: 44px;
+  padding: 12px 0;
+}
+
+.commentContent {
+  flex: 1;
+}
+
+.commentHeader {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 8px;
+}
+
+.username {
+  font-weight: 500;
+  color: $text-color;
+}
+
+.time {
+  font-size: 12px;
+  color: $text-color-light;
+}
+
+.text {
+  color: $text-color-secondary;
+  line-height: 1.6;
+  margin-bottom: 4px;
+}

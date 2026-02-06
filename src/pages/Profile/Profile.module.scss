@@ -1,0 +1,44 @@
+@import '@/styles/variables.scss';
+
+.profile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.userCard {
+  :global(.ant-card-body) {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.userMeta {
+  h2 {
+    margin: 0 0 4px;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  p {
+    margin: 0;
+    color: $text-color-secondary;
+  }
+}
+
+.contentCard {
+  :global(.ant-tabs-left) {
+    min-height: 400px;
+  }
+
+  :global(.ant-tabs-nav) {
+    width: 140px;
+  }
+}

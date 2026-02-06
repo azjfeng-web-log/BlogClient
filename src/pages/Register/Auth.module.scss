@@ -1,0 +1,53 @@
+@import '@/styles/variables.scss';
+
+.authPage {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 24px;
+}
+
+.authCard {
+  width: 100%;
+  max-width: 400px;
+  border-radius: $border-radius;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+
+  :global(.ant-card-body) {
+    padding: 40px;
+  }
+}
+
+.title {
+  text-align: center;
+  font-size: 28px;
+  font-weight: 600;
+  color: $text-color;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: $text-color-secondary;
+  margin-bottom: 32px;
+}
+
+.form {
+  margin-top: 24px;
+}
+
+.footer {
+  text-align: center;
+  color: $text-color-secondary;
+
+  a {
+    color: $primary-color;
+    font-weight: 500;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}

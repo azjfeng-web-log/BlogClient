@@ -1,0 +1,56 @@
+@import '@/styles/variables.scss';
+
+.tags {
+  .card, .listCard {
+    border-radius: $border-radius;
+  }
+}
+
+.tagCloud {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 16px 0;
+}
+
+.tag {
+  cursor: pointer;
+  padding: 4px 12px;
+  margin: 0;
+  transition: transform 0.3s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.articleItem {
+  padding: 16px 0;
+  border-bottom: 1px solid $border-color;
+  cursor: pointer;
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover h3 {
+    color: $primary-color;
+  }
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+  }
+
+  p {
+    color: $text-color-secondary;
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  span {
+    color: $text-color-light;
+    font-size: 12px;
+  }
+}

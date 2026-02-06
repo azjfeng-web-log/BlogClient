@@ -1,0 +1,75 @@
+@import '@/styles/variables.scss';
+
+.layout {
+  min-height: 100vh;
+}
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  background: $bg-color-white;
+  box-shadow: $box-shadow;
+  padding: 0;
+}
+
+.headerContent {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  height: $header-height;
+  padding: 0 24px;
+}
+
+.logo {
+  cursor: pointer;
+  margin-right: 40px;
+}
+
+.logoText {
+  font-size: 20px;
+  font-weight: 600;
+  color: $primary-color;
+}
+
+.menu {
+  flex: 1;
+  border-bottom: none;
+}
+
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.search {
+  width: 200px;
+}
+
+.avatar {
+  cursor: pointer;
+}
+
+.content {
+  margin-top: $header-height;
+  padding: 24px 0;
+  min-height: calc(100vh - $header-height - 60px);
+}
+
+.contentInner {
+  max-width: $content-max-width;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+}
+
+.footer {
+  text-align: center;
+  background: $bg-color-white;
+  padding: 16px;
+  color: $text-color-secondary;
+}

@@ -1,0 +1,99 @@
+@import '@/styles/variables.scss';
+
+.about {
+  max-width: 800px;
+  margin: 0 auto;
+
+  .card {
+    border-radius: $border-radius;
+  }
+}
+
+.header {
+  text-align: center;
+  padding: 24px 0;
+
+  h1 {
+    margin: 16px 0 8px;
+    font-size: 28px;
+  }
+
+  .bio {
+    color: $text-color-secondary;
+    font-size: 16px;
+  }
+}
+
+.section {
+  padding: 16px 0;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
+.skills {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+
+  @media (max-width: 576px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.skillItem {
+  .skillHeader {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .skillBar {
+    height: 8px;
+    background: $bg-color;
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .skillProgress {
+    height: 100%;
+    background: linear-gradient(90deg, $primary-color, #69c0ff);
+    border-radius: 4px;
+    transition: width 0.5s ease;
+  }
+}
+
+.intro {
+  color: $text-color-secondary;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.contacts {
+  display: flex;
+  gap: 24px;
+
+  a {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: $text-color-secondary;
+    font-size: 15px;
+    transition: color 0.3s;
+
+    &:hover {
+      color: $primary-color;
+    }
+
+    :global(.anticon) {
+      font-size: 20px;
+    }
+  }
+}
