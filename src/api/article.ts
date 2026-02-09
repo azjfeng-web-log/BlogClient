@@ -8,6 +8,7 @@ export interface Article {
   cover: string
   category: string
   tags: string[]
+  authorId: number
   viewCount: number
   likeCount: number
   commentCount: number

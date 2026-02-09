@@ -3,7 +3,7 @@ import { message } from 'antd'
 import { useUserStore } from '@/store/userStore'
 
 const request = axios.create({
-  baseURL: '/api',
+  baseURL: '/api_v2',
   timeout: 10000
 })
 

@@ -33,6 +33,8 @@ export default function MainLayout() {
   const handleSearch = () => {
     if (searchValue.trim()) {
       navigate(`/?keyword=${encodeURIComponent(searchValue.trim())}`)
+    } else {
+        navigate('/')
     }
   }
 
@@ -83,10 +85,12 @@ export default function MainLayout() {
             {user ? (
               <Dropdown menu={{ items: userMenuItems, onClick: handleUserMenuClick }} placement="bottomRight">
                 <Avatar 
-                  src={user.avatar} 
-                  icon={<UserOutlined />} 
+                  src={user.avatar || undefined} 
                   className={styles.avatar}
-                />
+                  style={!user.avatar ? { backgroundColor: '#1677ff' } : undefined}
+                >
+                  {!user.avatar && (user.nickname || user.username)?.charAt(0)?.toUpperCase()}
+                </Avatar>
               </Dropdown>
             ) : (
               <Button type="primary" icon={<LoginOutlined />} onClick={() => navigate('/login')}>

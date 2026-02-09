@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { Card, Tag, Button, Divider, Anchor, Spin, message } from 'antd'
 import { 
@@ -11,6 +11,8 @@ import {
   ShareAltOutlined,
   ArrowLeftOutlined
 } from '@ant-design/icons'
+import hljs from 'highlight.js'
+import 'highlight.js/styles/atom-one-dark.css'
 import { getArticleDetail, likeArticle, collectArticle, Article } from '@/api/article'
 import { useUserStore } from '@/store/userStore'
 import CommentSection from './CommentSection'
@@ -24,6 +26,7 @@ export default function ArticleDetail() {
   const [article, setArticle] = useState<Article | null>(null)
   const [liked, setLiked] = useState(false)
   const [collected, setCollected] = useState(false)
+  const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const fetchArticle = async () => {
@@ -40,6 +43,14 @@ export default function ArticleDetail() {
     }
     fetchArticle()
   }, [id])
+
+  useEffect(() => {
+    if (article && contentRef.current) {
+      contentRef.current.querySelectorAll('pre code').forEach((block) => {
+        hljs.highlightElement(block as HTMLElement)
+      })
+    }
+  }, [article])
 
   const handleLike = async () => {
     if (!user) {
@@ -113,6 +124,7 @@ export default function ArticleDetail() {
                 )}
 
                 <div 
+                  ref={contentRef}
                   className={styles.content}
                   dangerouslySetInnerHTML={{ __html: article.content }}
                 />

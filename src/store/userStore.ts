@@ -7,6 +7,7 @@ interface User {
   nickname: string
   avatar: string
   email: string
+  role: string
 }
 
 interface UserState {

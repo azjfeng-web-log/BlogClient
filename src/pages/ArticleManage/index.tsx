@@ -6,11 +6,13 @@ import { Editor, Toolbar } from '@wangeditor/editor-for-react'
 import type { IDomEditor, IEditorConfig, IToolbarConfig } from '@wangeditor/editor'
 import '@wangeditor/editor/dist/css/style.css'
 import { getArticleList, createArticle, updateArticle, deleteArticle, getCategoryList, getTagList, Article } from '@/api/article'
+import { useUserStore } from '@/store/userStore'
 import styles from './ArticleManage.module.scss'
 
 const { TextArea } = Input
 
 const ArticleManage = () => {
+  const { user } = useUserStore()
   const [articles, setArticles] = useState<Article[]>([])
   const [categories, setCategories] = useState<{ id: number; name: string }[]>([])
   const [tags, setTags] = useState<{ id: number; name: string }[]>([])
@@ -33,14 +35,14 @@ const ArticleManage = () => {
     placeholder: '请输入文章内容...',
   }
 
+  // 组件卸载时销毁编辑器
   useEffect(() => {
     return () => {
       if (editor) {
         editor.destroy()
-        setEditor(null)
       }
     }
-  }, [editor])
+  }, [])
 
   const fetchArticles = async (page = 1, pageSize = 10) => {
     setLoading(true)
@@ -179,15 +181,22 @@ const ArticleManage = () => {
       title: '操作',
       width: 150,
       fixed: 'right',
-      render: (_, record) => (
-        <Space size={0}>
-          <Button type="link" size="small" icon={<EyeOutlined />} onClick={() => handlePreviewFromList(record)} />
-          <Button type="link" size="small" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
-          <Popconfirm title="确定删除？" onConfirm={() => handleDelete(record.id)}>
-            <Button type="link" size="small" danger icon={<DeleteOutlined />} />
-          </Popconfirm>
-        </Space>
-      ),
+      render: (_, record) => {
+        const canModify = user?.role === 'admin' || user?.id === record.authorId
+        return (
+          <Space size={0}>
+            <Button type="link" size="small" icon={<EyeOutlined />} onClick={() => handlePreviewFromList(record)} />
+            {canModify && (
+              <>
+                <Button type="link" size="small" icon={<EditOutlined />} onClick={() => handleEdit(record)} />
+                <Popconfirm title="确定删除？" onConfirm={() => handleDelete(record.id)}>
+                  <Button type="link" size="small" danger icon={<DeleteOutlined />} />
+                </Popconfirm>
+              </>
+            )}
+          </Space>
+        )
+      },
     },
   ]
 
@@ -219,7 +228,13 @@ const ArticleManage = () => {
         open={modalOpen}
         onCancel={handleModalClose}
         width={900}
-        destroyOnClose
+        destroyOnClose={false}
+        afterClose={() => {
+          if (editor) {
+            editor.destroy()
+            setEditor(null)
+          }
+        }}
         footer={[
           <Button key="cancel" onClick={handleModalClose}>取消</Button>,
           <Button key="preview" icon={<EyeOutlined />} onClick={handlePreview}>预览</Button>,
@@ -252,20 +267,24 @@ const ArticleManage = () => {
           </Form.Item>
           <Form.Item label="内容" required>
             <div className={styles.editorWrapper}>
-              <Toolbar
-                editor={editor}
-                defaultConfig={toolbarConfig}
-                mode="default"
-                className={styles.toolbar}
-              />
-              <Editor
-                defaultConfig={editorConfig}
-                value={html}
-                onCreated={setEditor}
-                onChange={editor => setHtml(editor.getHtml())}
-                mode="default"
-                className={styles.editor}
-              />
+              {modalOpen && (
+                <>
+                  <Toolbar
+                    editor={editor}
+                    defaultConfig={toolbarConfig}
+                    mode="default"
+                    className={styles.toolbar}
+                  />
+                  <Editor
+                    defaultConfig={editorConfig}
+                    value={html}
+                    onCreated={setEditor}
+                    onChange={e => setHtml(e.getHtml())}
+                    mode="default"
+                    className={styles.editor}
+                  />
+                </>
+              )}
             </div>
           </Form.Item>
         </Form>

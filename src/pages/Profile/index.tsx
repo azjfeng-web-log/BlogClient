@@ -62,7 +62,9 @@ export default function Profile() {
           onFinish={handleUpdateInfo}
         >
           <Form.Item label="头像">
-            <Avatar src={user.avatar} size={80} icon={<UserOutlined />} />
+            <Avatar src={user.avatar || undefined} size={80} style={!user.avatar ? { backgroundColor: '#1677ff', fontSize: 32 } : undefined}>
+              {!user.avatar && (user.nickname || user.username)?.charAt(0)?.toUpperCase()}
+            </Avatar>
           </Form.Item>
           <Form.Item label="用户名">
             <Input value={user.username} disabled />
@@ -157,7 +159,9 @@ export default function Profile() {
     <div className={styles.profile}>
       <Card className={styles.userCard}>
         <div className={styles.userInfo}>
-          <Avatar src={user.avatar} size={80} icon={<UserOutlined />} />
+          <Avatar src={user.avatar || undefined} size={80} style={!user.avatar ? { backgroundColor: '#1677ff', fontSize: 32 } : undefined}>
+            {!user.avatar && (user.nickname || user.username)?.charAt(0)?.toUpperCase()}
+          </Avatar>
           <div className={styles.userMeta}>
             <h2>{user.nickname || user.username}</h2>
             <p>{user.email}</p>
