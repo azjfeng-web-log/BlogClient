@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Card, Avatar, Tabs, Form, Input, Button, message, List, Empty } from 'antd'
-import { UserOutlined, EditOutlined, LockOutlined, HeartOutlined, StarOutlined } from '@ant-design/icons'
+import {  EditOutlined, LockOutlined, HeartOutlined, StarOutlined } from '@ant-design/icons'
 import { useUserStore } from '@/store/userStore'
 import { updateUserInfo, updatePassword } from '@/api/user'
 import styles from './Profile.module.scss'

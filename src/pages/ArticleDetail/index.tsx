@@ -26,6 +26,7 @@ export default function ArticleDetail() {
   const [article, setArticle] = useState<Article | null>(null)
   const [liked, setLiked] = useState(false)
   const [collected, setCollected] = useState(false)
+  const [tocItems, setTocItems] = useState<{ key: string; href: string; title: string; children?: any[] }[]>([])
   const contentRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -49,6 +50,33 @@ export default function ArticleDetail() {
       contentRef.current.querySelectorAll('pre code').forEach((block) => {
         hljs.highlightElement(block as HTMLElement)
       })
+
+      const headings = contentRef.current.querySelectorAll('h1, h2, h3, h4, h5, h6')
+      const items: { key: string; href: string; title: string; level: number; children: any[] }[] = []
+      headings.forEach((heading, index) => {
+        const id = `heading-${index}`
+        heading.setAttribute('id', id)
+        const level = parseInt(heading.tagName[1])
+        items.push({ key: id, href: `#${id}`, title: heading.textContent || '', level, children: [] })
+      })
+
+      // 构建层级结构
+      const tree: any[] = []
+      const stack: any[] = []
+      items.forEach((item) => {
+        const node = { key: item.key, href: item.href, title: item.title, children: [] as any[] }
+        while (stack.length > 0 && stack[stack.length - 1].level >= item.level) {
+          stack.pop()
+        }
+        if (stack.length === 0) {
+          tree.push(node)
+        } else {
+          stack[stack.length - 1].node.children.push(node)
+        }
+        stack.push({ level: item.level, node })
+      })
+
+      setTocItems(tree)
     }
   }, [article])
 
@@ -157,7 +185,11 @@ export default function ArticleDetail() {
 
             <div className={styles.sidebar}>
               <Card title="目录" className={styles.tocCard}>
-                <Anchor items={[]} />
+                {tocItems.length > 0 ? (
+                  <Anchor offsetTop={80} items={tocItems} />
+                ) : (
+                  <span style={{ color: '#999' }}>暂无目录</span>
+                )}
               </Card>
             </div>
           </>
