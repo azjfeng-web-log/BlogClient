@@ -13,7 +13,7 @@ import {
 } from '@ant-design/icons'
 import hljs from 'highlight.js'
 import 'highlight.js/styles/atom-one-dark.css'
-import { getArticleDetail, likeArticle, collectArticle, Article } from '@/api/article'
+import { getArticleDetail, likeArticle, collectArticle, getArticleInteraction, Article } from '@/api/article'
 import { useUserStore } from '@/store/userStore'
 import CommentSection from './CommentSection'
 import styles from './ArticleDetail.module.scss'
@@ -44,6 +44,15 @@ export default function ArticleDetail() {
     }
     fetchArticle()
   }, [id])
+
+  useEffect(() => {
+    if (user && id) {
+      getArticleInteraction(Number(id)).then((res) => {
+        setLiked(res.data.liked)
+        setCollected(res.data.collected)
+      }).catch(() => {})
+    }
+  }, [user, id])
 
   useEffect(() => {
     if (article && contentRef.current) {
@@ -88,6 +97,7 @@ export default function ArticleDetail() {
     try {
       const res = await likeArticle(Number(id))
       setLiked(res.data.liked)
+      setArticle((prev) => prev ? { ...prev, likeCount: res.data.likeCount } : prev)
       message.success(res.data.liked ? '点赞成功' : '已取消点赞')
     } catch {
       // error handled by interceptor
@@ -163,7 +173,7 @@ export default function ArticleDetail() {
                     icon={liked ? <LikeFilled /> : <LikeOutlined />}
                     onClick={handleLike}
                   >
-                    {article.likeCount + (liked ? 1 : 0)}
+                    {article.likeCount}
                   </Button>
                   <Button 
                     type={collected ? 'primary' : 'default'}

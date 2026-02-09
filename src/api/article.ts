@@ -49,6 +49,11 @@ export const collectArticle = (id: number) => {
   return request.post(`/article/${id}/collect`)
 }
 
+// 获取文章交互状态
+export const getArticleInteraction = (id: number) => {
+  return request.get(`/article/${id}/interaction`)
+}
+
 // 获取分类列表
 export const getCategoryList = () => {
   return request.get('/category/list')
