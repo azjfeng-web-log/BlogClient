@@ -9,7 +9,8 @@ import {
   UserOutlined,
   LoginOutlined,
   LogoutOutlined,
-  EditOutlined
+  EditOutlined,
+  VideoCameraOutlined,
 } from '@ant-design/icons'
 import { useUserStore } from '@/store/userStore'
 import styles from './MainLayout.module.scss'
@@ -21,7 +22,8 @@ const menuItems = [
   { key: '/category', icon: <FolderOutlined />, label: '分类' },
   { key: '/tags', icon: <TagsOutlined />, label: '标签' },
   { key: '/archive', icon: <ClockCircleOutlined />, label: '归档' },
-  { key: '/about', icon: <UserOutlined />, label: '关于' }
+  { key: '/about', icon: <UserOutlined />, label: '关于' },
+  { key: '/editor', icon: <VideoCameraOutlined />, label: '视频编辑' },
 ]
 
 export default function MainLayout() {

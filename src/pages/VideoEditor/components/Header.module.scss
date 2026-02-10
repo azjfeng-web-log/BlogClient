@@ -1,0 +1,67 @@
+.header {
+  height: 48px;
+  background: #1a1a2e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  user-select: none;
+}
+
+.left {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.backBtn {
+  color: rgba(255, 255, 255, 0.65) !important;
+  &:hover {
+    color: #fff !important;
+  }
+}
+
+.logo {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1890ff;
+  margin-right: 20px;
+  white-space: nowrap;
+}
+
+.menus {
+  display: flex;
+  gap: 2px;
+}
+
+.menuItem {
+  color: rgba(255, 255, 255, 0.75);
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 13px;
+  transition: all 0.2s;
+  &:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+  }
+}
+
+.center {
+  display: flex;
+  align-items: center;
+}
+
+.toolBtn {
+  color: rgba(255, 255, 255, 0.65) !important;
+  font-size: 16px !important;
+  &:hover {
+    color: #1890ff !important;
+    background: rgba(255, 255, 255, 0.06) !important;
+  }
+}
+
+.right {
+  width: 120px;
+}
