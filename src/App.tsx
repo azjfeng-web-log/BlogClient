@@ -11,6 +11,7 @@ import Register from './pages/Register'
 import Profile from './pages/Profile'
 import ArticleManage from './pages/ArticleManage'
 import VideoEditor from './pages/VideoEditor'
+import Chat from './pages/Chat'
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="about" element={<About />} />
         <Route path="profile" element={<Profile />} />
         <Route path="manage/articles" element={<ArticleManage />} />
+        <Route path="chat" element={<Chat />} />
       </Route>
     </Routes>
   )

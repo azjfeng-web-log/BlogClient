@@ -11,6 +11,7 @@ import {
   LogoutOutlined,
   EditOutlined,
   VideoCameraOutlined,
+  RobotOutlined,
 } from '@ant-design/icons'
 import { useUserStore } from '@/store/userStore'
 import styles from './MainLayout.module.scss'
@@ -24,6 +25,7 @@ const menuItems = [
   { key: '/archive', icon: <ClockCircleOutlined />, label: '归档' },
   { key: '/about', icon: <UserOutlined />, label: '关于' },
   { key: '/editor', icon: <VideoCameraOutlined />, label: '视频编辑' },
+  { key: '/chat', icon: <RobotOutlined />, label: 'AI 对话' },
 ]
 
 export default function MainLayout() {

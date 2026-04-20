@@ -1,7 +1,12 @@
 @import '@/styles/variables.scss';
 
+html, body {
+  height: 100%;
+}
 .layout {
-  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
 }
 
 .header {
@@ -57,7 +62,8 @@
 .content {
   margin-top: $header-height;
   padding: 24px 0;
-  min-height: calc(100vh - $header-height - 60px);
+  flex: 1;
+  min-height: 0;
 }
 
 .contentInner {
@@ -65,6 +71,7 @@
   margin: 0 auto;
   padding: 0 24px;
   width: 100%;
+  height: 100%;
 }
 
 .footer {
