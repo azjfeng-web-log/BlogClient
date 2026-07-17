@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { persist } from 'zustand/middleware'
-import { ChatMessage, ChatModel } from '@/api/chat'
+import { ChatMessage, ChatModel, deleteChatSession } from '@/api/chat'
 
 interface ChatSession {
   sessionId: string
@@ -88,14 +88,19 @@ export const useChatStore = create<ChatState>()(
 
       setActiveSession: (sessionId) => set({ activeSessionId: sessionId, streamContent: '' }),
 
-      deleteSession: (sessionId) =>
-        set((s) => {
-          const sessions = s.sessions.filter((se) => se.sessionId !== sessionId)
-          return {
-            sessions,
-            activeSessionId: s.activeSessionId === sessionId ? null : s.activeSessionId
+      deleteSession: async (sessionId) => {
+        if (!sessionId.startsWith('temp_')) {
+          try {
+            await deleteChatSession(sessionId)
+          } catch {
+            return
           }
-        }),
+        }
+        set((s) => ({
+          sessions: s.sessions.filter((se) => se.sessionId !== sessionId),
+          activeSessionId: s.activeSessionId === sessionId ? null : s.activeSessionId
+        }))
+      },
 
       restoreSession: (sessionId: string, title: string, model: string, messages: ChatMessage[]) => {
         const state = get()

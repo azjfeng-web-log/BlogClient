@@ -66,6 +66,17 @@ export const getChatHistory = async (sessionId: string): Promise<ChatMessage[]> 
   throw new Error(json.message || '获取历史消息失败')
 }
 
+/** 删除指定会话的历史记录 */
+export const deleteChatSession = async (sessionId: string): Promise<void> => {
+  const token = useUserStore.getState().token
+  const res = await fetch(`${BASE_URL}/chat/session?sessionId=${encodeURIComponent(sessionId)}`, {
+    method: 'DELETE',
+    headers: token ? { Authorization: `Bearer ${token}` } : {}
+  })
+  const json = await res.json()
+  if (json.code !== 0) throw new Error(json.message || '删除会话失败')
+}
+
 /**
  * 发送 SSE 聊天请求
  * 返回 AbortController 用于取消请求

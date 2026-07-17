@@ -1,3 +1,4 @@
+//ts-ignore
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Button, Select, Input, Avatar, Spin, Empty, Popconfirm, message } from 'antd'
 import {
@@ -198,7 +199,7 @@ export default function Chat() {
 
   /** Markdown 代码块渲染 */
   const codeRenderer = {
-    code({ className, children, ...props }: { className?: string; children?: React.ReactNode; [key: string]: unknown }) {
+    code({ className, children, ...props }: React.ComponentPropsWithoutRef<'code'>) {
       const match = /language-(\w+)/.exec(className || '')
       const codeStr = String(children).replace(/\n$/, '')
       return match ? (
